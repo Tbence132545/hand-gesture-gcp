@@ -37,7 +37,6 @@ The webcam client can optionally send features to Cloud Run → Vertex AI, demon
   - localVideo.py → runs inference locally, using .h5 model.
 - Model: Multi-layer perceptron (MLP) trained on hand landmark features extracted via MediaPipe.
 
-  
 ```mermaid
 flowchart LR
     Webcam[Webcam Client]
