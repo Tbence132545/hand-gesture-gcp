@@ -1,6 +1,10 @@
 # Hand Gesture Recognition (Rock-Paper-Scissors)
 
-This repository contains a complete pipeline for real-time hand gesture recognition using webcam input, a pre-trained MLP model, and Cloud Run + Vertex AI for cloud inference.
+This repository contains a complete pipeline for real-time hand gesture recognition using webcam input, dataset preprocessing, a pre-trained MLP model, and Cloud Run + Vertex AI for cloud inference.
+
+This project is mostly for fun and experimentation. By leveraging Medipipe for hand landmark detection and training an MLP on these features, it vastly outperformed any CNN I could have written (mainly due to a lack of diversity in the datasets online).  
+To make the project a bit more “real-world,” the webcam client can send extracted features to a Cloud Run backend which forwards them to a Vertex AI endpoint for inference. This setup demonstrates cloud deployment and secure service-to-service communication without relying on local computation for predictions. It’s mainly for experimentation and to show how the pipeline could scale, rather than because the model actually needs the cloud to perform well.
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/eccc9103-6791-4eef-9869-fbcd572155ce" alt="rps_demo_gif">
 </p>
@@ -54,6 +58,8 @@ This repository contains a complete pipeline for real-time hand gesture recognit
 
 - Training: categorical_crossentropy loss, Adam optimizer, early stopping, and learning rate reduction on plateau.
 - Output: Probability for each class; predicted label = argmax.
+<img width="600" height="500" alt="confusion_matrix" src="https://github.com/user-attachments/assets/5fb95099-5fbd-4db1-9fce-ed96585c2f80" />
+
 
 --------------------------------------------------------------------------------
 <a name="data-preparation--feature-extraction"></a>
