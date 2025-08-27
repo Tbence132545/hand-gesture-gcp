@@ -2,8 +2,9 @@
 
 This repository contains a complete pipeline for real-time hand gesture recognition using webcam input, dataset preprocessing, a pre-trained MLP model, and Cloud Run + Vertex AI for cloud inference.
 
-This project is mostly for fun and experimentation. By leveraging Medipipe for hand landmark detection and training an MLP on these features, it vastly outperformed any CNN I could have written (mainly due to a lack of diversity in the datasets online).  
-To make the project a bit more “real-world,” the webcam client can send extracted features to a Cloud Run backend which forwards them to a Vertex AI endpoint for inference. This setup demonstrates cloud deployment and secure service-to-service communication without relying on local computation for predictions. It’s mainly for experimentation and to show how the pipeline could scale, rather than because the model actually needs the cloud to perform well.
+This project is mostly for fun and experimentation. Using MediaPipe hand landmarks with a simple MLP outperformed any CNN I could build, mainly due to limited dataset diversity. 
+The webcam client can optionally send features to Cloud Run → Vertex AI, demonstrating secure cloud inference pipelines.
+
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/eccc9103-6791-4eef-9869-fbcd572155ce" alt="rps_demo_gif">
@@ -36,6 +37,21 @@ To make the project a bit more “real-world,” the webcam client can send extr
   - video.py → sends webcam features to Cloud Run for inference.
   - localVideo.py → runs inference locally, using .h5 model.
 - Model: Multi-layer perceptron (MLP) trained on hand landmark features extracted via MediaPipe.
+
+  
+```mermaid
+flowchart LR
+    Webcam[Webcam Client]
+    CloudRun[Cloud Run Backend]
+    VertexAI[Vertex AI Endpoint]
+    GCS[GCS Bucket]
+    Secret[Secret Manager]
+
+    Webcam --> CloudRun
+    CloudRun --> VertexAI
+    CloudRun --> GCS
+    CloudRun --> Secret
+```
 
 --------------------------------------------------------------------------------
 <a name="model-explanation"></a>
