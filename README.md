@@ -5,7 +5,6 @@ This repository contains a complete pipeline for real-time hand gesture recognit
 This project is mostly for fun and experimentation. Using MediaPipe hand landmarks with a simple MLP outperformed any CNN I could build, mainly due to limited dataset diversity. 
 The webcam client can optionally send features to Cloud Run → Vertex AI, demonstrating secure cloud inference pipelines.
 
-
 <p align="center">
   <img src="https://github.com/user-attachments/assets/eccc9103-6791-4eef-9869-fbcd572155ce" alt="rps_demo_gif">
 </p>
