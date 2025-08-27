@@ -1,0 +1,11 @@
+numpy
+opencv-python
+mediapipe
+requests
+scipy
+google-cloud-secret-manager
+google-auth
+joblib
+tensorflow==2.20.0
+pyvirtualcam
+protobuf<4
