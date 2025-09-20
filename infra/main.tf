@@ -78,8 +78,7 @@ resource "google_cloud_run_v2_service" "main_service" {
     service_account = google_service_account.cloud_run_sa.email
   }
 }
-
-# Secure the Cloud Run Service 
+ 
 resource "google_cloud_run_v2_service_iam_member" "invoker" {
   project  = var.gcp_project_id
   location = var.gcp_region
@@ -88,13 +87,11 @@ resource "google_cloud_run_v2_service_iam_member" "invoker" {
   member   = var.user_email
 }
 
-# Output the final URL 
 output "cloud_run_service_url" {
   description = "The URL of the deployed Cloud Run service."
   value       = google_cloud_run_v2_service.main_service.uri
 }
 
-# Allow the service account to invoke the service
 resource "google_cloud_run_v2_service_iam_member" "invoker_sa" {
   project  = var.gcp_project_id
   location = var.gcp_region
